@@ -36,7 +36,7 @@ We welcome contributions from the community to help improve NoteIt further. Whet
 
 ## Support
 
-If you encounter any issues, have questions, or want to provide feedback, please don't hesitate to [contact us](mailto:contact@noteitapp.com). We're here to help and appreciate your input!
+If you encounter any issues, have questions, or want to provide feedback, please don't hesitate to [contact us](mailto:suyash096@gmail.com). We're here to help and appreciate your input!
 
 ## License
 
