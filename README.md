@@ -32,7 +32,7 @@ To get started with NoteIt, simply download and install the app from the Google 
 
 ## Contributing
 
-We welcome contributions from the community to help improve NoteIt further. Whether it's fixing bugs, adding new features, or enhancing the user experience, your contributions are valuable. Please refer to our [Contribution Guidelines](CONTRIBUTING.md) for more details.
+We welcome contributions from the community to help improve NoteIt further. Whether it's fixing bugs, adding new features, or enhancing the user experience, your contributions are valuable.
 
 ## Support
 
