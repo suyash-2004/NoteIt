@@ -1,0 +1,30 @@
+<resources>
+    <string name="add">ADD</string>
+    <string name="add_url">Add Url</string>
+    <string name="add_urll">Add URL</string>
+    <string name="androidx_startup">androidx.startup</string>
+    <string name="app_name">Noteit</string>
+    <string name="appbar_scrolling_view_behavior">com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior</string>
+    <string name="are_you_sure_you_want_to_delete_this_note">Are you sure you want to Delete this Note?</string>
+    <string name="bottom_sheet_behavior">com.google.android.material.bottomsheet.BottomSheetBehavior</string>
+    <string name="bottomsheet_action_collapse">Collapse the bottom sheet</string>
+    <string name="bottomsheet_action_expand">Expand the bottom sheet</string>
+    <string name="bottomsheet_action_expand_halfway">Expand halfway</string>
+    <string name="bottomsheet_drag_handle_clicked">Drag handle double-tapped</string>
+    <string name="bottomsheet_drag_handle_content_description">Drag handle</string>
+    <string name="cancel">CANCEL</string>
+    <string name="cancel_dialog">Cancel</string>
+    <string name="note_title">Title</string>
+    <string name="note_subtitle">Subtitle</string>
+    <string name="type_note_here">Type Note Here</string>
+    <string name="delete_note">Delete Note</string>
+    <string name="pick_color">Pick Color</string>
+    <string name="miscellaneous">Miscellaneous</string>
+    <string name="my_notes">My Notes</string>
+    <string name="create_your_first_note">Create Your First Note</string>
+    <string name="search_notes">Search Notes</string>
+    <string name="delete_note_dialog">Delete Note</string>
+    <string name="note_it">Note It</string>
+    <string name="suyash_singh">Suyash Singh</string>
+
+</resources>
