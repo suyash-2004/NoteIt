@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:id="@+id/layoutNote"
+    android:background="@drawable/background_note"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/_12sdp"
+    android:layout_marginStart="@dimen/_12sdp">
+
+    <com.makeramen.roundedimageview.RoundedImageView
+        android:id="@+id/imageNote"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        app:riv_corner_radius_bottom_left="@dimen/_10sdp"
+        app:riv_corner_radius_bottom_right="@dimen/_10sdp"
+        app:riv_corner_radius_top_left="@dimen/_10sdp"
+        app:riv_corner_radius_top_right="@dimen/_10sdp" />
+
+    <TextView
+        android:textSize="@dimen/_16ssp"
+        android:textColor="@color/colorBlack"
+        android:id="@+id/textTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:includeFontPadding="false"
+        android:fontFamily="@font/ubuntubold"
+        android:layout_marginStart="@dimen/_8sdp"
+        android:layout_marginEnd="@dimen/_8sdp" />
+
+    <TextView
+        android:textSize="@dimen/_15ssp"
+        android:textColor="@color/colorBlack"
+        android:id="@+id/textSubtitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_4sdp"
+        android:layout_marginBottom="@dimen/_4sdp"
+        android:includeFontPadding="false"
+        android:fontFamily="@font/ubunturegular"
+        android:layout_marginStart="@dimen/_8sdp"
+        android:layout_marginEnd="@dimen/_8sdp" />
+
+    <TextView
+        android:textSize="@dimen/_10ssp"
+        android:textColor="@color/colorBlack"
+        android:id="@+id/textDateTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_8sdp"
+        android:includeFontPadding="false"
+        android:fontFamily="@font/ubunturegular"
+        android:layout_marginStart="@dimen/_8sdp"
+        android:layout_marginEnd="@dimen/_8sdp" />
+
+</LinearLayout>
