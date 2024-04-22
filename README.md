@@ -8,25 +8,22 @@ NoteIt is a simple yet powerful note-taking application designed to help you org
    - Create new notes with titles, subtitles, and text content.
    - Edit existing notes to update their content or details.
 
-### 2. Rich Text Formatting
-   - Customize your notes with rich text formatting options such as bold, italic, underline, and more.
-
-### 3. Add Images
+### 2. Add Images
    - Enhance your notes by adding images from your device's gallery or camera.
 
-### 4. Attach URLs
+### 3. Attach URLs
    - Easily attach URLs to your notes for quick reference or additional information.
 
-### 5. Color Customization
+### 4. Color Customization
    - Personalize your notes with customizable color options to suit your preferences.
 
-### 6. Search Functionality
+### 5. Search Functionality
    - Quickly find specific notes using the search feature based on titles or content.
 
-### 7. Delete Notes
+### 6. Delete Notes
    - Remove unwanted notes effortlessly with the ability to delete them from the app.
 
-### 8. Responsive Design
+### 7. Responsive Design
    - Enjoy a seamless note-taking experience across various devices with NoteIt's responsive design.
 
 ## Getting Started
