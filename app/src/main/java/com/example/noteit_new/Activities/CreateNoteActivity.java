@@ -15,6 +15,7 @@ import android.util.Log;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -39,16 +40,12 @@ import java.util.Locale;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-/* loaded from: classes.dex */
 public class CreateNoteActivity extends AppCompatActivity {
-    private static final int REQUEST_CODE_SELECT_IMAGE = 2;
-    public static final int REQUEST_CODE_STORAGE_PERMISSION = 1;
+
     private Note alreadyAvailableNote;
-    private String dateTime;
     private AlertDialog dialogAddURL;
     private AlertDialog dialogDeleteNote;
-    private ExecutorService executorService = Executors.newSingleThreadExecutor();
-    private ImageView imageBack;
+    private final ExecutorService executorService = Executors.newSingleThreadExecutor();
     private EditText inputNoteSubtitle;
     private EditText inputNoteText;
     private EditText inputNoteTitle;
@@ -79,7 +76,7 @@ public class CreateNoteActivity extends AppCompatActivity {
 
         textDateTime.setText(new SimpleDateFormat("EEEE, dd MMMM yyyy HH:mm:ss", Locale.getDefault()).format(new Date()));
 
-        imageBack = findViewById(R.id.imageBack);
+        ImageView imageBack = findViewById(R.id.imageBack);
         imageBack.setOnClickListener(view -> onBackPressed());
 
         selectedNoteColor = "#FDBE3B";
@@ -133,7 +130,7 @@ public class CreateNoteActivity extends AppCompatActivity {
             Toast.makeText(this, "Title cannot be empty", Toast.LENGTH_SHORT).show();
         } else if (TextUtils.isEmpty(trim2)) {
             Toast.makeText(this, "Note cannot be empty", Toast.LENGTH_SHORT).show();
-        } else {
+        } else if(!TextUtils.isEmpty(trim) && !TextUtils.isEmpty(trim2)) {
             saveNote();
             startActivity(intent);
             finish();
@@ -316,28 +313,42 @@ public class CreateNoteActivity extends AppCompatActivity {
 
     private void showAddURLDialog() {
         if (dialogAddURL == null) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            View inflate = LayoutInflater.from(this).inflate(R.layout.layout_add_url, findViewById(R.id.layoutAddUrlContainer));
-            builder.setView(inflate);
+            AlertDialog.Builder builder = new AlertDialog.Builder(CreateNoteActivity.this);
+            View view = LayoutInflater.from(this).inflate(R.layout.layout_add_url, (ViewGroup) findViewById(R.id.layoutAddUrlContainer));
+            builder.setView(view);
             dialogAddURL = builder.create();
-            dialogAddURL.getWindow().setBackgroundDrawable(new ColorDrawable(0));
-            final EditText editText = inflate.findViewById(R.id.inputURL);
+            if (dialogAddURL.getWindow() != null) {
+                dialogAddURL.getWindow().setBackgroundDrawable(new ColorDrawable(0));
+            }
+
+            final EditText editText = view.findViewById(R.id.inputURL);
             editText.requestFocus();
-            inflate.findViewById(R.id.textAdd).setOnClickListener(view -> {
-                if (editText.getText().toString().trim().isEmpty()) {
-                    Toast.makeText(CreateNoteActivity.this, "Enter URL", Toast.LENGTH_SHORT).show();
-                } else if (!Patterns.WEB_URL.matcher(editText.getText().toString()).matches()) {
-                    Toast.makeText(CreateNoteActivity.this, "Enter a Valid URL", Toast.LENGTH_SHORT).show();
-                } else {
-                    textWebURL.setText(editText.getText().toString());
-                    layoutWebURL.setVisibility(View.VISIBLE);
+
+            view.findViewById(R.id.textAdd).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (editText.getText().toString().trim().isEmpty()) {
+                        Toast.makeText(CreateNoteActivity.this, "Enter URL", Toast.LENGTH_SHORT).show();
+                    } else if (!Patterns.WEB_URL.matcher(editText.getText().toString()).matches()) {
+                        Toast.makeText(CreateNoteActivity.this, "Enter a Valid URL", Toast.LENGTH_SHORT).show();
+                    } else {
+                        textWebURL.setText(editText.getText().toString());
+                        layoutWebURL.setVisibility(View.VISIBLE);
+                        dialogAddURL.dismiss();
+                    }
+                }
+            });
+
+            view.findViewById(R.id.textCancel).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
                     dialogAddURL.dismiss();
                 }
             });
-            inflate.findViewById(R.id.textCancel).setOnClickListener(view -> dialogAddURL.dismiss());
         }
         dialogAddURL.show();
     }
+
 
 
     @Override
@@ -392,7 +403,8 @@ public class CreateNoteActivity extends AppCompatActivity {
         title = inputNoteTitle.getText().toString().trim();
         subtitle = inputNoteSubtitle.getText().toString().trim();
         text = inputNoteText.getText().toString().trim();
-        dateTime = textDateTime.getText().toString().trim();
+        String dateTime = textDateTime.getText().toString().trim();
+
         final Note note = new Note(title, subtitle, text, dateTime);
         note.setColor(selectedNoteColor);
         note.setImagePath(selectedImagePath);

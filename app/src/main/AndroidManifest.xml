@@ -29,9 +29,8 @@
         <activity
             android:name="com.example.noteit_new.Activities.CreateNoteActivity"
             android:exported="false"
-            android:screenOrientation="fullSensor"
             android:windowSoftInputMode="stateHidden"
-            android:theme="@style/ThemeApp" />
+            android:theme="@style/Base.Theme.NoteIt_New" />
 
         <!-- MainActivity -->
         <activity
@@ -39,7 +38,7 @@
             android:exported="true"
             android:screenOrientation="fullSensor"
             android:windowSoftInputMode="stateHidden"
-            android:theme="@style/ThemeApp" />
+            android:theme="@style/Base.Theme.NoteIt_New" />
     </application>
 
 </manifest>

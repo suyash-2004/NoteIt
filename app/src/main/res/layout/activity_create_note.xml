@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/colorPrimary"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -12,7 +11,8 @@
         android:clipToPadding="false"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="@dimen/_40sdp">
+        android:layout_marginBottom="@dimen/_40sdp"
+        app:layout_constraintBottom_toTopOf="@+id/layout_miscellaneous">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layout_CreateNote"
@@ -123,9 +123,9 @@
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
                 android:id="@+id/layoutWebURL"
-                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:visibility="gone"
                 android:layout_marginTop="@dimen/_15sdp"
                 android:layout_marginStart="@dimen/_12sdp"
                 android:layout_marginEnd="@dimen/_12sdp"
@@ -138,9 +138,9 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:includeFontPadding="false"
-                    android:textColor="@drawable/web_link"
                     android:layout_weight="1"
-                    android:fontFamily="@font/ubunturegular"/>
+                    android:fontFamily="@font/ubunturegular"
+                    android:textColorLink="@color/colorAccent"/>
 
                 <ImageView
                     android:id="@+id/imageRemoveURL"
