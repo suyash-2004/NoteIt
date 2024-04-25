@@ -1,7 +1,6 @@
 package com.example.noteit_new.Activities;
 
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -238,8 +237,8 @@ public class CreateNoteActivity extends AppCompatActivity {
 
         }
         linearLayout.findViewById(R.id.layoutAddImage).setOnClickListener(view -> {
-            if (ContextCompat.checkSelfPermission(getApplicationContext(), "android.permission.READ_EXTERNAL_STORAGE") != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(CreateNoteActivity.this, new String[]{"android.permission.READ_EXTERNAL_STORAGE"}, 5);
+            if (ContextCompat.checkSelfPermission(getApplicationContext(), "android.permission.READ_MEDIA_IMAGES") != 0) {
+                ActivityCompat.requestPermissions(CreateNoteActivity.this, new String[]{"android.permission.READ_MEDIA_IMAGES"}, 5);
             }
             bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
             linearLayout.findViewById(R.id.viewArrowMiscellaneout).setBackgroundResource(R.drawable.arrow_up);
@@ -297,7 +296,7 @@ public class CreateNoteActivity extends AppCompatActivity {
     private void selectImage() {
         Intent intent = new Intent("android.intent.action.PICK", MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         if (intent.resolveActivity(getPackageManager()) != null) {
-            startActivityForResult(intent, 4);
+            startActivityForResult(intent, 2);
         }
     }
 
