@@ -2,6 +2,7 @@ package com.example.noteit_new;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.content.Intent;
 import android.database.Cursor;
@@ -131,8 +132,8 @@ public class MainActivity extends AppCompatActivity implements NotesListener {
 
         findViewById(R.id.imageAddNote).setOnClickListener(view -> startActivityForResult(new Intent(getApplicationContext(), CreateNoteActivity.class), 1));
         findViewById(R.id.imageAddImage).setOnClickListener(view -> {
-            if (ContextCompat.checkSelfPermission(getApplicationContext(), "android.permission.READ_MEDIA_IMAGES") != 0) {
-                ActivityCompat.requestPermissions(MainActivity.this, new String[]{"android.permission.READ_MEDIA_IMAGES"}, 5);
+            if (ContextCompat.checkSelfPermission(getApplicationContext(), "android.permission.READ_EXTERNAL_STORAGE") != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(MainActivity.this, new String[]{"android.permission.READ_EXTERNAL_STORAGE"}, 5);
             } else {
                 selectImage();
             }
