@@ -145,8 +145,8 @@ public class CreateNoteActivity extends AppCompatActivity {
         selectedNoteColor = alreadyAvailableNote.getColor();
         if (alreadyAvailableNote.getImagePath() != null && !alreadyAvailableNote.getImagePath().trim().isEmpty()) {
             noteImage.setImageBitmap(BitmapFactory.decodeFile(alreadyAvailableNote.getImagePath()));
-            noteImage.setVisibility(View.VISIBLE);
             findViewById(R.id.imageRemoveNoteImage).setVisibility(View.VISIBLE);
+            noteImage.setVisibility(View.VISIBLE);
             selectedImagePath = alreadyAvailableNote.getImagePath();
         }
         if (alreadyAvailableNote.getWebLink() != null && !alreadyAvailableNote.getWebLink().trim().isEmpty()) {
@@ -168,6 +168,7 @@ public class CreateNoteActivity extends AppCompatActivity {
                 view.setBackgroundResource(R.drawable.arrow_up);
             }
         });
+
         final ImageView imageView =  linearLayout.findViewById(R.id.imageColor1);
         final ImageView imageView2 =  linearLayout.findViewById(R.id.imageColor2);
         final ImageView imageView3 =  linearLayout.findViewById(R.id.imageColor3);
@@ -288,7 +289,6 @@ public class CreateNoteActivity extends AppCompatActivity {
         dialogDeleteNote.show();
     }
 
-
     private void setSubtitleIndicatorColor() {
         ((GradientDrawable) this.viewSubtitleIndicator.getBackground()).setColor(Color.parseColor(this.selectedNoteColor));
     }
@@ -348,8 +348,6 @@ public class CreateNoteActivity extends AppCompatActivity {
         }
         dialogAddURL.show();
     }
-
-
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, int[] grantResults) {

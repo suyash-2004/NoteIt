@@ -1,5 +1,6 @@
 package com.example.noteit_new;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.pm.PackageManager;
@@ -31,6 +32,8 @@ import com.example.noteit_new.Listeners.NotesListener;
 import com.example.noteit_new.RecyclerTouchListener.RecyclerTouchListener;
 import com.example.noteit_new.adapters.NotesAdapter;
 import com.example.noteit_new.database.NotesDatabase;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
@@ -78,6 +81,7 @@ public class MainActivity extends AppCompatActivity implements NotesListener {
         notesRecyclerView.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), this.notesRecyclerView, new RecyclerTouchListener.ClickListener() {
             @Override
             public void onClick(View view, int position) {
+                // Implement click handling if needed
             }
 
             @Override
@@ -92,19 +96,25 @@ public class MainActivity extends AppCompatActivity implements NotesListener {
                         dialogDeleteNote.getWindow().setBackgroundDrawable(new ColorDrawable(0));
                     }
                     inflate.findViewById(R.id.textDeleteNoteDialog).setOnClickListener(view2 -> executorService.execute(() -> {
-                        NotesDatabase.getDatabase(MainActivity.this.getApplicationContext()).notesDao().deletenote(noteToDelete);
-                        runOnUiThread(() -> {
-                            notesList.remove(noteToDelete);
-                            notesAdapter.notifyItemRemoved(position);
-                            dialogDeleteNote.dismiss();
-                            if (notesList.isEmpty()) {
-                                noNoteImage.setVisibility(View.VISIBLE);
-                                noNoteText.setVisibility(View.VISIBLE);
-                            } else {
-                                noNoteImage.setVisibility(View.GONE);
-                                noNoteText.setVisibility(View.GONE);
-                            }
-                        });
+                        int noteIndex = notesList.indexOf(noteToDelete);
+                        if (noteIndex != -1) {
+                            NotesDatabase.getDatabase(MainActivity.this.getApplicationContext()).notesDao().deletenote(noteToDelete);
+                            runOnUiThread(() -> {
+                                notesList.remove(noteIndex);
+                                notesAdapter.notifyItemRemoved(noteIndex);
+                                dialogDeleteNote.dismiss();
+                                if (notesList.isEmpty()) {
+                                    noNoteImage.setVisibility(View.VISIBLE);
+                                    noNoteText.setVisibility(View.VISIBLE);
+                                } else {
+                                    noNoteImage.setVisibility(View.GONE);
+                                    noNoteText.setVisibility(View.GONE);
+                                }
+                            });
+                        } else {
+                            // Handle the case when noteToDelete is not present in the notesList
+                            Log.e("MainActivity", "Note to be deleted not found in the list");
+                        }
                     }));
                     inflate.findViewById(R.id.textCancel).setOnClickListener(view2 -> dialogDeleteNote.dismiss());
                 }
@@ -132,11 +142,10 @@ public class MainActivity extends AppCompatActivity implements NotesListener {
 
         findViewById(R.id.imageAddNote).setOnClickListener(view -> startActivityForResult(new Intent(getApplicationContext(), CreateNoteActivity.class), 1));
         findViewById(R.id.imageAddImage).setOnClickListener(view -> {
-            if (ContextCompat.checkSelfPermission(getApplicationContext(), "android.permission.READ_EXTERNAL_STORAGE") != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(MainActivity.this, new String[]{"android.permission.READ_EXTERNAL_STORAGE"}, 5);
-            } else {
-                selectImage();
+            if (ContextCompat.checkSelfPermission(getApplicationContext(), "android.permission.READ_MEDIA_IMAGES") != 0) {
+                ActivityCompat.requestPermissions(MainActivity.this, new String[]{"android.permission.READ_MEDIA_IMAGES"}, 5);
             }
+            selectImage();
         });
 
         findViewById(R.id.imageAddWebLink).setOnClickListener(view -> showAddURLDialog());
@@ -145,7 +154,7 @@ public class MainActivity extends AppCompatActivity implements NotesListener {
     private void selectImage() {
         Intent intent = new Intent("android.intent.action.PICK", MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         if (intent.resolveActivity(getPackageManager()) != null) {
-            startActivityForResult(intent, 4);
+            startActivityForResult(intent, 2);
         }
     }
 
@@ -161,15 +170,14 @@ public class MainActivity extends AppCompatActivity implements NotesListener {
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode != REQUEST_CODE_STORAGE_PERMISSION || permissions.length == 0) {
-            return;
-        }
-        if (grantResults[0] == 0) {
-            selectImage();
-        } else {
-            Toast.makeText(this, "Permission denied", Toast.LENGTH_SHORT).show();
+        if (requestCode == 1) {
+            if (grantResults.length > 0 && grantResults[0] == 0) {
+                selectImage();
+            } else {
+                Toast.makeText(this, "Permission denied", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 
