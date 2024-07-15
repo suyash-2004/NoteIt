@@ -2,6 +2,16 @@
 
 NoteIt is a simple yet powerful note-taking application designed to help you organize your thoughts, ideas, tasks, and more. With its intuitive interface and essential features, NoteIt makes it easy to capture and manage your notes on the go.
 
+![image](https://github.com/user-attachments/assets/f7b312bf-cfdc-4494-83e9-784ae44ce808)
+
+
+![image](https://github.com/user-attachments/assets/cf72f7f9-3d3a-4129-8f66-f979e85973a4)
+
+
+![image](https://github.com/user-attachments/assets/5464c30c-9312-49bc-9dce-bcb7ff3dbd42)
+
+
+
 ## Features
 
 ### 1. Create and Edit Notes
